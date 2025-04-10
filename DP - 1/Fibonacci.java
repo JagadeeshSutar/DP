@@ -166,24 +166,72 @@
 
 //Use of Memoization to optimize the solution
 
+// public class Fibonacci {
+//   public static int climbStairs(int n, int dp[]) {
+//     if (n < 0)
+//       return 0;  // Base case
+//     if (n == 0 || n == 1)
+//       return 1;
+
+//     if (dp[n] != 0)
+//       return dp[n];
+
+//     dp[n] = climbStairs(n - 1, dp) + climbStairs(n - 2, dp) + climbStairs(n - 3, dp);
+//     return dp[n];
+//   }
+
+//   public static void main(String[] args) {
+//     int n = 3;
+//     int dp[] = new int[n + 1];
+//     System.out.println(climbStairs(n, dp)); 
+//   }
+// }
+
+//Use of Tabulation to optimize the solution
+
+//my code
+
+// public class Fibonacci {
+//   public static int climbStairs(int n, int dp[]) {
+//     dp[0] = 0;
+//     dp[1] = 1;
+//     for (int i = 2; i <= n; i++) {
+//       dp[i] = dp[i - 1] + dp[i - 2];
+//     }
+//     return dp[n];
+
+//   }
+
+//   public static void main(String[] args) {
+//     int n = 5;
+//     int dp[] = new int[n + 2];
+
+//     System.out.println(climbStairs(n + 1, dp));
+//   }
+// }
+
+//didi's code
+
+import java.util.*;
+
 public class Fibonacci {
   public static int climbStairs(int n, int dp[]) {
-    if (n < 0)
-      return 0;// Base case
-    if (n == 0 || n == 1)
-      return 1;
+    dp[0] = 1;
+    for (int i = 1; i <= n; i++) {
+      if (i == 1) {
+        dp[i] = dp[i - 1] + 0;
+      } else {
+        dp[i] = dp[i - 1] + dp[i - 2];
+      }
 
-    if (dp[n] != 0)
-      return dp[n];
-
-    dp[n] = climbStairs(n - 1, dp) + climbStairs(n - 2, dp);
+    }
     return dp[n];
   }
 
   public static void main(String[] args) {
-    int n = 5;
+    int n = 3;
     int dp[] = new int[n + 1];
-    System.out.println(climbStairs(n, dp)); // Output: 5
+    Arrays.fill(dp, -1);
+    System.out.println(climbStairs(n, dp));
   }
 }
-
